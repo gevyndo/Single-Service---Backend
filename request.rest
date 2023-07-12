@@ -1,0 +1,28 @@
+GET http://localhost:5000/products
+
+###
+GET http://localhost:5000/products/5
+
+###
+POST http://localhost:5000/products
+Content-Type: application/json
+
+{
+    "name": "Banana",
+    "price": 1000,
+    "stok": 22,
+    "idPerusahaan": 96, 
+    "kodeBarang": ""
+   
+} 
+
+###
+PATCH  http://localhost:5000/products/3
+Content-Type: application/json
+
+{
+    "name": "Lyc"
+} 
+
+###
+DELETE http://localhost:5000/products/5

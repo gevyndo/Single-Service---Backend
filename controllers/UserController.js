@@ -1,47 +1,61 @@
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
+const prisma = new PrismaClient();
 
 export const register = async (req, res) => {
-    const { username, password, confirmPassword} = req.body;
-    if (password !== confirmPassword){
-        return res.status(400).json({msg: "Password and Confirm Password Doesn't match!"});
+    const { username, password, confirmPassword } = req.body;
+    if (password !== confirmPassword) {
+      return res.status(400).json({ msg: "Password and Confirm Password don't match!" });
     }
-
-    const salt = await bcrypt.genSalt();
-    const hashedPassword = await bcrypt.hash(password, salt);
-
+  
     try {
-        await Users.create({
-            username: username,
-            password: hashedPassword
-        })
-        res.json({msg: "Registration Success!"})
+      const salt = await bcrypt.genSalt();
+      const hashedPassword = await bcrypt.hash(password, salt);
+  
+      const user = await prisma.user.create({
+        data: {
+          username,
+          password: hashedPassword,
+        },
+      });
+  
+      res.json({ msg: "Registration Success!", user });
     } catch (error) {
-        console.log(error);
+      res.status(500).json({ msg: error.message });
     }
-}
+  };
 
 export const login = async (req, res) => {
-    try {
-        const users = await Users.findAll({
-            where: {
-                username: req.body.username
-            }
-        })
+  const { username, password } = req.body;
 
-        const passwordMatch = await bcrypt.compare(req.body.password, users[0].password);
-        if (!passwordMatch){
-            return res.status(400).json({msg: "Wrong Password!"});
-        }
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        username: username,
+      },
+    });
 
-        const userId = users[0].id;
-        const username = users[0].username;
-        const accessToken = jwt.sign({userId, username}, process.env.ACCESS_TOKEN_SECRET);
-
-        res.json({ status: "success", message: "Login Success", data: users[0], token: accessToken });
-
-    } catch (error) {
-        res.status(404).json({msg: "User Not Found!"})
+    if (!user) {
+      return res.status(404).json({ msg: "User Not Found!" });
     }
-}
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
+      return res.status(400).json({ msg: "Wrong Password!" });
+    }
+
+    const userId = user.id;
+    const accessToken = jwt.sign({ userId, username }, process.env.ACCESS_TOKEN_SECRET);
+
+    res.json({
+      status: "success",
+      message: "Login Success",
+      data: user,
+      token: accessToken,
+    });
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};

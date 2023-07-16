@@ -18,7 +18,7 @@ model Product {
   kodeBarang   String
   createdAt    DateTime @default(now())
 
-  perusahaan Perusahaan @relation(fields: [idPerusahaan], references: [id])
+  perusahaan Perusahaan @relation(fields: [idPerusahaan], references: [id], onDelete: Cascade)
 }
 
 model Perusahaan {
@@ -29,4 +29,10 @@ model Perusahaan {
   kodePajak String
 
   products Product[]
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  username String @unique
+  password String
 }

@@ -3,7 +3,14 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 const prisma = new PrismaClient();
-
+export const getUsers = async (req, res) => {
+  try {
+    const userss = await prisma.perusahaan.findMany();
+    res.status(200).json(userss);
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
 export const register = async (req, res) => {
     const { username, password, confirmPassword } = req.body;
     if (password !== confirmPassword) {
@@ -59,3 +66,4 @@ export const login = async (req, res) => {
     res.status(500).json({ msg: error.message });
   }
 };
+

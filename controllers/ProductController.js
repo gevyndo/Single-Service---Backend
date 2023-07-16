@@ -53,7 +53,7 @@ export const updatePerusahaan = async (req, res) => {
 
   // Validate kodePajak format (3 uppercase letters)
   const kodePajakRegex = /^[A-Z]{3}$/;
-  if (!kodePajakRegex.test(kodePajak)) {
+  if ((kodePajak) && !kodePajakRegex.test(kodePajak)) {
     return res.status(400).json({ msg: "Invalid Kode Pajak format. Must be 3 uppercase letters." });
   }
 
@@ -64,7 +64,7 @@ export const updatePerusahaan = async (req, res) => {
         nama,
         alamat,
         noTelepon,
-        kodePajak,
+        kodePajak
       },
     });
     res.status(200).json(perusahaan);

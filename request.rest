@@ -1,4 +1,5 @@
 GET http://localhost:5000/products
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiQmFuYW5hIiwiaWF0IjoxNjg5NDIyNzU4fQ.MT4GY4xlmDuWUqruHLB-FpeY2Bunlx25m0kDtb_14jg
 
 ###
 GET http://localhost:5000/products/5
@@ -6,23 +7,80 @@ GET http://localhost:5000/products/5
 ###
 POST http://localhost:5000/products
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiQmFuYW5hIiwiaWF0IjoxNjg5NDI1MTA2fQ.dmOI8Py0-BsDDKIDB6YlX1vgZJqIeRY3xJNiIzIxKJU
 
 {
-    "name": "Banana",
-    "price": 1000,
-    "stok": 22,
-    "idPerusahaan": 96, 
+    "name": "Lychee",
+    "price": 100,
+    "stok": 2,
+    "idPerusahaan": 1, 
     "kodeBarang": ""
-   
 } 
 
 ###
 PATCH  http://localhost:5000/products/3
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiQmFuYW5hIiwiaWF0IjoxNjg5NDI1MTA2fQ.dmOI8Py0-BsDDKIDB6YlX1vgZJqIeRY3xJNiIzIxKJU
 
 {
-    "name": "Lyc"
+    "name": "Lyc",
+    "idPerusahaan": 3
 } 
 
 ###
 DELETE http://localhost:5000/products/5
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiQmFuYW5hIiwiaWF0IjoxNjg5NDI1MTA2fQ.dmOI8Py0-BsDDKIDB6YlX1vgZJqIeRY3xJNiIzIxKJU
+
+###
+GET http://localhost:5000/perusahaan
+
+###
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "username": "Banana",
+    "password": "asd"
+}  
+###
+POST http://localhost:5000/register
+Content-Type: application/json
+
+{
+    "username": "Banana",
+    "password": "asd",
+    "confirmPassword": "asd"
+} 
+
+###
+POST http://localhost:5000/perusahaan
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiQmFuYW5hIiwiaWF0IjoxNjg5NDI1MTA2fQ.dmOI8Py0-BsDDKIDB6YlX1vgZJqIeRY3xJNiIzIxKJU
+
+{
+    "nama": "PT Ivan Unyu",
+    "alamat": "Jalan Arjuna no. 12",
+    "noTelepon": "08123456789",
+    "kodePajak": "ABC"
+} 
+
+###
+GET http://localhost:5000/perusahaan
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiQmFuYW5hIiwiaWF0IjoxNjg5NDI1MTA2fQ.dmOI8Py0-BsDDKIDB6YlX1vgZJqIeRY3xJNiIzIxKJU
+
+###
+GET http://localhost:5000/perusahaan/2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiQmFuYW5hIiwiaWF0IjoxNjg5NDI1MTA2fQ.dmOI8Py0-BsDDKIDB6YlX1vgZJqIeRY3xJNiIzIxKJU
+
+###
+PATCH  http://localhost:5000/perusahaan/2
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiQmFuYW5hIiwiaWF0IjoxNjg5NDI1MTA2fQ.dmOI8Py0-BsDDKIDB6YlX1vgZJqIeRY3xJNiIzIxKJU
+
+{
+    "nama": "PT IVAN LEXI"
+} 
+
+###
+DELETE http://localhost:5000/perusahaan/2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiQmFuYW5hIiwiaWF0IjoxNjg5NDIyNzU4fQ.MT4GY4xlmDuWUqruHLB-FpeY2Bunlx25m0kDtb_14jg

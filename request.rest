@@ -3,6 +3,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1l
 
 ###
 GET http://localhost:5000/products/5
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiQmFuYW5hIiwiaWF0IjoxNjg5NDI1MTA2fQ.dmOI8Py0-BsDDKIDB6YlX1vgZJqIeRY3xJNiIzIxKJU
 
 ###
 POST http://localhost:5000/products
@@ -82,5 +83,5 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1l
 } 
 
 ###
-DELETE http://localhost:5000/perusahaan/2
+DELETE http://localhost:5000/perusahaan/1
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiQmFuYW5hIiwiaWF0IjoxNjg5NDIyNzU4fQ.MT4GY4xlmDuWUqruHLB-FpeY2Bunlx25m0kDtb_14jg

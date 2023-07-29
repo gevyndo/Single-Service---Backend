@@ -8,7 +8,13 @@ import PerusahaanRouter from "./routes/PerusahaanRoute.js";
 dotenv.config();
 
 const app = express();
-app.use(cors());
+const corsConfig = {
+  origin: '',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE']
+}
+app.use(cors(corsConfig))
+app.options("", cors(corsConfig))
 app.use(express.json());
 app.use('/products', ProductRouter); 
 app.use('/', UserRouter); 
